@@ -1,0 +1,67 @@
+<form class="forms-sample" method="POST" action="/appointment">
+
+
+
+    <div class="form-group">
+        <label for="exampleSelectGender">Select Specailization of doctors: </label>
+        <select class="form-control" name="doctorcat">
+            <option>--Select --</option>
+            <% docs.forEach(docss=> { %>
+                <option value="<%=docss%>">
+                    <%=docss%>
+                </option>
+                <% }) %>
+
+
+
+        </select>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary me-2"> Search Doctor </button>
+
+</form>
+
+<div class="row">
+
+    <div class="col-xl-10 stretch-card grid-margin">
+        <div class="card">
+            <div class="card-body pb-0">
+                <h4 class="card-title mb-0 ">Available Doctors List</h4>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table custom-table text-dark">
+                        <thead>
+                            <tr class="text-primary">
+                                <th>Name</th>
+                                <th>Specialization</th>
+                                <th>Offday</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(allDoc){ allDoc.forEach(doctable=> { %>
+                                <tr>
+                                    <td>
+                                        <%= doctable.doctor.doctorName %> 
+                                    </td>
+                                    <td>
+                                        <%= doctable.doctor.doctorSpeacialization %> 
+                                    </td>
+                                    <td><%= doctable.offday %> </td>
+                                    <td><a class="btn btn-primary me-2" href="/appointDetails?id=<%=doctable.doctor._id%>">Take Appointment</a></td>
+                                </tr>
+                                <% }) } else{ }%>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <a class="text-black font-13 d-block pt-2 pb-2 pb-lg-0 font-weight-bold ps-4" href="#">Show more</a>
+            </div>
+        </div>
+    </div>
+</div>

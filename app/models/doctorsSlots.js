@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const doctorSchema = require('../models/Doctors')
 const DoctorSlots = new mongoose.Schema({
-    doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctors' ,},
+    doctor: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctors' , unique: true},
     offday: { type: String, default: 'friday'  },
     slots: [{
             startTime: {type: String, },

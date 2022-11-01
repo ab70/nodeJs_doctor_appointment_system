@@ -85,8 +85,10 @@ function adminControllers() {
             const saveSlots = await newdocSlot.save()
             if(saveSlots){
                 console.log('slot saved');
+                res.redirect('/admin')
             }
-        }
+        },
+        
     }
 }
 
