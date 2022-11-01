@@ -8,6 +8,7 @@ function initRoutes(app) {
 
     app.get('/', homeControllers().home )
     app.get('/login', authControllers().loginPage )
+    app.post('/login', authControllers().loginPost)
     app.get('/signup', authControllers().signupPage)
     app.get('/adminseed', authControllers().seedAdmin)
     app.post('/signup',authControllers().signupPost)

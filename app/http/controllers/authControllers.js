@@ -14,6 +14,31 @@ function authControllers(){
         loginPage(req,res){
             res.render('login')
         },
+        async loginPost(req,res){
+            try{
+                const user = await userSchema.findOne({userEmail: req.body.userEmail})
+            if (!user) {
+                res.render('/login')
+                
+            }
+            else{
+                const hasedPass = CryptoJS.AES.decrypt(user.userPass, process.env.SECRET_key).toString(CryptoJS.enc.Utf8);
+                if(hasedPass!==req.body.userPass){
+                    res.redirect('/login')
+                }
+                if(hasedPass==req.body.userPass){
+                    const token = jwt.sign({id: user._id, role: user.userType}, process.env.jsonSec,{expiresIn: '1h'})
+                    res.cookie('jwt-token',token).redirect('/patient')
+                    
+                    
+                }
+            }
+            
+            }
+            catch(err){
+                res.redirect('/login')
+            }
+        },
 
 
         //signup page get
