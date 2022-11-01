@@ -1,0 +1,32 @@
+<form class="forms-sample" method="POST" action="/setDocSlot">
+
+
+
+    <div class="form-group">
+        <label for="exampleSelectGender">Select Doctor</label>
+        <select class="form-control" name="doctorid">
+            <option>--Select Doctor--</option>
+            <% doctors.forEach(doct=> { %>
+                <option value="<%=doct._id%> ">
+                    <%= doct.doctorName %> --Reg(<%=doct._id%> )
+                </option>
+                <% }) %>
+
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="exampleInputCity1">Set Start Time</label>
+
+        <input type="time" class="form-control" id="startTime" name="slot[startTime]">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputCity1">Set End Time</label>
+
+        <input type="time" class="form-control" id="endTime" name="slot[endTime]">
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2"> Submit </button>
+    
+</form>
