@@ -4,6 +4,9 @@ const authControllers = require('../app/http/controllers/authControllers')
 const adminControllers = require('../app/http/controllers/adminController')
 const patientControllers = require('../app/http/controllers/patientControllers')
 
+//middlewares
+const {adminAuth} =require('../app/http/middlewares/authMiddleware')
+
 function initRoutes(app) {
 
     app.get('/', homeControllers().home )
@@ -14,7 +17,8 @@ function initRoutes(app) {
     app.post('/signup',authControllers().signupPost)
     
     //manager or admin routes
-    app.get('/addDoctor',adminControllers().addDoctorPage)
+    app.get('/admin', adminAuth, adminControllers().adminDash)
+    app.get('/addDoctor', adminAuth, adminControllers().addDoctorPage)
     app.get('/addslot',adminControllers().addSlots)
     app.post('/addDoctor',adminControllers().addDoctorPost)
     app.get('/admin', adminControllers().adminDash)

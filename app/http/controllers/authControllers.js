@@ -28,7 +28,7 @@ function authControllers(){
                 }
                 if(hasedPass==req.body.userPass){
                     const token = jwt.sign({id: user._id, role: user.userType}, process.env.jsonSec,{expiresIn: '1h'})
-                    res.cookie('jwt-token',token).redirect('/patient')
+                    res.cookie('jwt_token',token).redirect('/patient')
                     
                     
                 }

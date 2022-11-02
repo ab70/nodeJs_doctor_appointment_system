@@ -15,7 +15,7 @@ function adminControllers() {
         //add doctor get
         addDoctorPage(req, res) {
             
-
+            res.render('admin/adminDash', {layout: 'layout/adminLayout'})
         },
         //add doctor post req
         async addDoctorPost(req, res) {
