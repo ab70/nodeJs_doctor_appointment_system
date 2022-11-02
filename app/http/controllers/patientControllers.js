@@ -3,6 +3,8 @@ const moment = require('moment')
 //schema import
 const doctorSchema = require('../../models/Doctors')
 const docSlotSchema = require('../../models/doctorsSlots')
+const appointmentScehma = require('../../models/Appointment')
+
 function patientControllers(){
     return{
         //get patient dashboard
@@ -62,11 +64,11 @@ function patientControllers(){
             
             // console.log(req.query.id);
             var sid = mongoose.Types.ObjectId(req.query.id);
-            console.log(sid);
+            
             // var sid = mongoose.isObjectIdOrHexString(req.params.id)
             try{    
                 const detailedSlot = await docSlotSchema.find({doctor:sid}).populate('doctor')
-                console.log(detailedSlot);
+                
                 res.render('user/appointmentdetails',{layout: 'layout/patientLayout', docdeatils: detailedSlot})
 
             } 
@@ -79,7 +81,27 @@ function patientControllers(){
         },
         //post a appointment req
         async postAppointment(req,res){
-            console.log(req.body);
+            const newAppointment = new appointmentScehma({
+                userDetails: mongoose.Types.ObjectId(req.body.patientId),
+                doctorDetails: mongoose.Types.ObjectId(req.body.doctorId),
+                appointmentDate: req.body.advancedate,
+                pickedTime: mongoose.Types.ObjectId(req.body.pickedTime)
+            })
+            
+            try{
+                
+                const saveAppointment = await newAppointment.save()
+                if(saveAppointment){
+                    res.json({status: 200, message: 'Saved your appointment'})
+                }
+                else{
+                    res.json({status: 501, message: "Could not make appointment"})
+                }
+
+            }
+            catch(err){
+                res.json({status: 500, message: err})
+            }
         }
     }
 }

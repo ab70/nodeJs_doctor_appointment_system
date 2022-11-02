@@ -125,6 +125,8 @@
 
     <!-- scripts -->
     <script src="assets/admin/vendors/js/vendor.bundle.base.js"></script>
+    
+  <script type = "text/JavaScript" src = "https://MomentJS.com/downloads/moment.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="assets/admin/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
@@ -142,9 +144,13 @@
     <script src="assets/admin/js/misc.js"></script>
     <script src="assets/admin/js/settings.js"></script>
     <script src="assets/admin/js/todolist.js"></script>
+    <script src="assets/admin/js/custom.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="assets/admin/js/dashboard.js"></script>
+    <script>
+        document.getElementById('advancedate').value = moment().format('YYYY-MM-DD');
+      </script>
 </body>
 
 </html>

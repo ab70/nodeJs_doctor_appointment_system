@@ -7,20 +7,20 @@
           <form class="forms-sample" method="post" action="/appointmentcheck">
             <div class="form-group">
               <label for="exampleInputUsername1">userid</label>
-              <input type="text" class="form-control" name="patientId" value="635d6951fcb6fd33a06d51bc" disabled/>
+              <input type="text" class="form-control" id="patientId" name="patientId" value="635d6951fcb6fd33a06d51bc" hidden/>
             </div>
             <% docdeatils.forEach(element => { %>
             <div class="form-group">
                 <label for="exampleInputUsername1">Doctor Name: <b><%= element.doctor.doctorName %></b></label>
-                <input type="text" class="form-control text-bold" name="doctorId" value="<%= element.doctor._id %>" hidden  />
+                <input type="text" class="form-control text-bold" id="doctorId" name="doctorId" value="<%= element.doctor._id %>" hidden  />
               </div>
               <div class="form-group">
                 <label for="exampleInputUsername1">Doctor Specialization: </label>
-                <input type="text" class="form-control text-bold" value="<%= element.doctor.doctorSpeacialization %> " disabled  />
+                <input type="text" class="form-control text-bold"  value="<%= element.doctor.doctorSpeacialization %> " disabled  />
               </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Pick Date</label>
-              <input type="date" form-control="form-control"  name="advancedate">
+              <input type="date" form-control="form-control" id="advancedate" name="advancedate">
              
             </div>
             <b for="exampleInputEmail1">Choose A time slot</b>
@@ -28,7 +28,7 @@
             <% element.slots.forEach(slo => { %>
                 <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="pickedTime" value="<%= slo._id %>" <% if (!slo.status=='active') { %>
+                      <input type="radio" class="form-check-input" id="pickedTime" name="pickedTime" value="<%= slo._id %>" <% if (!slo.status=='active') { %>
                        disabled
                       <% } %> /> <%=slo.startTime%> - <%= slo.endTime %> </label>
                   </div>
@@ -38,12 +38,15 @@
             
             
             
-            <button type="submit" class="btn btn-primary me-2"> Submit </button>
+            <button type="submit" id="appointmentpost" class="btn btn-primary me-2"> Submit </button>
             
           </form>
         </div>
       </div>
     </div>
+    
+
+   
     
    
     
