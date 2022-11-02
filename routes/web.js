@@ -5,7 +5,7 @@ const adminControllers = require('../app/http/controllers/adminController')
 const patientControllers = require('../app/http/controllers/patientControllers')
 
 //middlewares
-const {adminAuth} =require('../app/http/middlewares/authMiddleware')
+const {adminAuth, userAuth} =require('../app/http/middlewares/authMiddleware')
 
 function initRoutes(app) {
 
@@ -25,7 +25,7 @@ function initRoutes(app) {
     app.post('/setDocSlot', adminControllers().postSlot)
 
     //patient controller
-    app.get('/patient', patientControllers().patientDash)
+    app.get('/patient',userAuth, patientControllers().patientDash)
     app.get('/appointment', patientControllers().appointmentPatient)
     app.post('/appointment', patientControllers().searchDoctorbyCat)
     app.get('/appointDetails', patientControllers().appointmentDetails)

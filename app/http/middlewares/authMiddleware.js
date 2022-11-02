@@ -39,4 +39,30 @@ const adminAuth =  (req,res,next)=>{
     }
 }
 
-module.exports = {adminAuth}
+const userAuth = (req,res,next)=>{
+    const token = req.cookies.jwt_token;
+    if(token){
+        jwt.verify(token,process.env.jsonSec,async (err,decodedToken)=>{
+            if (err) {
+                res.redirect('/login')
+                req.currentUser = null                
+            }
+            else{
+                if(!(decodedToken.role===process.env.adminRole)){
+                    console.log('im here');
+                    const data = await getData(decodedToken.id)
+                    req.currentUser = data
+                    next()
+                }
+                else{
+                    res.redirect('/login')
+                }
+            }
+        })
+    }
+    else{
+        res.redirect('/login')
+    }
+}
+
+module.exports = {adminAuth, userAuth}

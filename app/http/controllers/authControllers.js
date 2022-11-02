@@ -18,7 +18,7 @@ function authControllers(){
             try{
                 const user = await userSchema.findOne({userEmail: req.body.userEmail})
             if (!user) {
-                res.render('/login')
+                res.redirect('/signup')
                 
             }
             else{
@@ -28,7 +28,18 @@ function authControllers(){
                 }
                 if(hasedPass==req.body.userPass){
                     const token = jwt.sign({id: user._id, role: user.userType}, process.env.jsonSec,{expiresIn: '1h'})
-                    res.cookie('jwt_token',token).redirect('/patient')
+                    console.log(token);
+                    const redirectAdmin = '/admin';
+                    const redirectUser = '/patient';
+                    if(user.userType===process.env.adminRole){
+                        console.log('this is admin');
+                        res.cookie('jwt_token',token).redirect(redirectAdmin)
+                    }
+                    else{
+                        console.log('this is not admin');
+                        res.cookie('jwt_token',token).redirect(redirectUser)
+                    }
+                    
                     
                     
                 }
