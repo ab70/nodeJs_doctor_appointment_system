@@ -51,7 +51,7 @@ function patientControllers(){
                         filteredData.push(e)
                     }
                 });
-                res.render('user/appointment', {layout: 'layout/patientlayout', docs: newCat, allDoc: filteredData})
+                res.render('user/appointment', {layout: 'layout/patientLayout', docs: newCat, allDoc: filteredData})
                 
                 
             }
@@ -102,7 +102,9 @@ function patientControllers(){
             catch(err){
                 res.json({status: 500, message: err})
             }
-        }
+        },
+        //show all my(patients)appointments
+        
     }
 }
 module.exports = patientControllers

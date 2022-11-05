@@ -14,6 +14,7 @@ function authControllers(){
         loginPage(req,res){
             res.render('login')
         },
+        //login
         async loginPost(req,res){
             try{
                 const user = await userSchema.findOne({userEmail: req.body.userEmail})
@@ -89,6 +90,17 @@ function authControllers(){
             catch(err){
                 res.status(500).redirect('/signup')   //internal server error
             } 
+        },
+
+        //logout jwt cookie destroy
+        logout(req,res){
+           
+            try{
+
+            }
+            catch(err){
+                
+            }
         },
         //seed admin
         async seedAdmin(req,res){

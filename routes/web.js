@@ -30,6 +30,7 @@ function initRoutes(app) {
     app.post('/appointment', patientControllers().searchDoctorbyCat)
     app.get('/appointDetails', patientControllers().appointmentDetails)
     app.post('/appointmentcheck', patientControllers().postAppointment)
+    app.get('/myappointments', )
     
 
 }

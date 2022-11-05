@@ -10,7 +10,8 @@ const AppointmentSchema = new mongoose.Schema({
              type: mongoose.Schema.Types.ObjectId, ref: 'doctorslot' 
             } //here i want to ref that slot objcet id inside that array
          
-    }
+    },
+    appointmentStatus: {type: String, required: true, default: '' }
 }, {timestamps: true})
 
 const appointmentSchema = mongoose.model('appointment', AppointmentSchema)
